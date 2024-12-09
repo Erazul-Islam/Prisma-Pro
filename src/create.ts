@@ -3,11 +3,21 @@ import { PrismaClient, UserRole } from "@prisma/client";
 const prisma = new PrismaClient()
 
 const main = async () => {
-    const createUser = await prisma.user.create({
+    const createUser = await prisma.post.create({
         data : {
-            userName : 'userName2',
-            email : "bahu@gmail2.com",
-            role : UserRole.user
+           title : "This is title",
+           content : "This is content",
+           authorId : 3,
+           PostCategory : {
+                create : [
+                    {
+                        categoryId : 1
+                    },
+                    {
+                        categoryId : 3
+                    }
+                ]
+           }
         }
     })
     console.log(createUser)
